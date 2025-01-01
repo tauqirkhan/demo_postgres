@@ -1,0 +1,15 @@
+<html>
+  <head>
+    <title><%= title %></title>
+  </head>
+  <body>
+    <h1><%= title %></h1>
+    <form action="/new" method="POST">
+      <div>
+        <label for="username">Enter username: </label>
+        <input type="text" id="username" name="username" required />
+      </div>
+      <input type="submit" value="Submit username" />
+    </form>
+  </body>
+</html>
