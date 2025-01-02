@@ -31,3 +31,12 @@ exports.searchGet = async (req, res) => {
   const username = await db.getUsername(q);
   res.send("username: " + username.id + " and " + username.username);
 };
+
+exports.usernameDeleteGet = async (req, res) => {
+  res.render("delete");
+};
+
+exports.usernameDeletePost = async (req, res) => {
+  await db.deleteAllUsernames();
+  res.redirect("/");
+};
