@@ -1,15 +1,17 @@
-exports.indexGet = (req, res) => {
-  console.log("usernames will be logged here - wip");
-  res.send("usernames will be logged here - wip");
+const db = require("../db/queries");
+
+exports.indexGet = async (req, res) => {
+  const usernames = await db.getAllUsernames();
+  console.log("Usernames: ", usernames);
+  res.send("usernames: " + usernames.map((user) => user.username).join(", "));
 };
 
 exports.formGet = (req, res) => {
   res.render("createForm", { title: "Username" });
 };
 
-exports.createPost = (req, res) => {
+exports.createPost = async (req, res) => {
   const { username } = req.body;
-  console.log("username to be saved: ", username);
-
-  res.redirect("/new");
+  await db.insertUsername(username);
+  res.redirect("/");
 };
